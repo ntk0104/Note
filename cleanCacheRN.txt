@@ -1,0 +1,6 @@
+watchman watch-del-all
+rm -fr $TMPDIR/react-*
+erase jest-cache folder
+rm -rf node_modules
+npm install
+npm cache clean && npm start -- --reset-cache
