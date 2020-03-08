@@ -1,0 +1,1 @@
+cd node_modules/react-native/React/..; exec ./scripts/ios-install-third-party.sh
