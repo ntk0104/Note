@@ -1,0 +1,6 @@
+for RN >= 0.6
+need to install this lib: https://reactnative.dev/docs/geolocation
+and Synctax changed to: 
+
+import Geolocation from '@react-native-community/geolocation';
+Geolocation.getCurrentPosition(
