@@ -1,0 +1,21 @@
+ I had the same issue as you. I managed to get the app running but now I get a message on the map screen that I need to update Google Play services. To fix the compilation error I have added:
+
+   compile "com.google.android.gms:play-services-base:+"
+    compile "com.google.android.gms:play-services-maps:+"
+
+to app.gradle. This seems a bit hacky and doesn't solve the map issue but at least you should be able to compile your app.
+
+EDIT:
+
+If you get an error about Dex exceeding max size of 65k add:
+
+compile 'com.android.support:multidex:1.0.0'
+
+to your dependencies and:
+
+multiDexEnabled true
+
+under defaultConfig in your app.gradle
+
+cd android
+./gradle clean
