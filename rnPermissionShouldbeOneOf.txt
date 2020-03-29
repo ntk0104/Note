@@ -1,0 +1,20 @@
+https://github.com/react-native-community/react-native-permissions/issues/344
+
+manual add to the pod file
+permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary.podspec"
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
+  
+  then
+  rm -rf $TMPDIR/react-*
+  rm -rf $TMPDIR/metro-*
+  watchman watch-del-all
+  yarn cache clean
+  rm -rf ios/pods
+  pod install
+  yarn install
+  
+  clean build folder
+  clear derived data
+  build again
+  
