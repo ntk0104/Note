@@ -1,0 +1,83 @@
+Command build ios react native
+
+
+react-native run-ios --configuration Release
+
+
+ cach build apk
+
+1. run this command
+
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+
+npx jetifier (de fix bug v4.compat hoặc lỗi javaC)
+
+clean cache ( de fix bug java heap size)
+
+2. vao android studio chon build => generate apk
+3. thay doi version trong build.gradle app 
+4. chon dia chi duong dan file
+
+password keystore: unlock passwod alias: admin123
+
+
+cach fix duplicate resource - reset tất cả lại như đầu
+add them in
+node_modules/react-native/react.gradle
+
+doLast {
+    def moveFunc = { resSuffix ->
+        File originalDir = file("$buildDir/generated/res/react/release/${resSuffix}");
+        if (originalDir.exists()) {
+            File destDir = file("$buildDir/../src/main/res/${resSuffix}");
+            ant.move(file: originalDir, tofile: destDir);
+        }
+     }
+     moveFunc.curry("drawable-ldpi").call()
+     moveFunc.curry("drawable-mdpi").call()
+     moveFunc.curry("drawable-hdpi").call()
+     moveFunc.curry("drawable-xhdpi").call()
+     moveFunc.curry("drawable-xxhdpi").call()
+     moveFunc.curry("drawable-xxxhdpi").call()
+     moveFunc.curry("raw").call()
+}
+react-native link
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+vao android build lai
+
+
+clear cache for react native
+rm -rf node_modules
+
+
+rm -rf $TMPDIR/react-* && watchman watch-del-all
+
+
+# Clean cache
+rm -rf $TMPDIR/react-*; rm -rf $TMPDIR/haste-*; rm -rf $TMPDIR/metro-*; watchman watch-del-all
+
+
+GuildeLine How To Fix config.h in CabinDefects App
+
+rm -rf node_modules
+rm -rf $TMPDIR/react-* && watchman watch-del-all
+rm -rf $TMPDIR/react-*; rm -rf $TMPDIR/haste-*; rm -rf $TMPDIR/metro-*; watchman watch-del-all
+
+nvm use 10
+npm install
+cd SDk npm install
+node_modules/react-native/scripts/ios-install-third-party.sh
+Open Xcode and build project for generate the node_modules/react-native/scripts/third-party folder
+Find in Xcode ucontext_t (in signalhandler.cc) change the bottom line to return NULL;
+cd node_modules/react-native/third-party/glog-0.3.5
+./configure
+
+npm run start-app — —reset-cache 
+react-native run-ios —simulator=“iPad Air”
+
+
+command export realm db from android simulator 
+adb exec-out run-as com.testrunandroid cat /data/data/com.testrunandroid/files/default.realm > ~/Documents/foo.realm
+
+init project with specific version and application id
+react-native init Rider --version react-native@0.61.5 --package=com.rider
